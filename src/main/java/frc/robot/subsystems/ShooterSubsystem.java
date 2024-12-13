@@ -21,14 +21,8 @@ public class ShooterSubsystem extends SubsystemBase {
 
     }
 
-    public void setVolts(double volts) {
-        topMotor.setVoltage(volts);
-        bottomMotor.setVoltage(volts);
-    }
-
-    public void setTopMotorRPM(double topMotorRPM) { topMotor.set(topMotorRPM); }
-
-    public void setBottomMotorRPM(double bottomMotorRPM) { bottomMotor.set(bottomMotorRPM); }
+    public void setTopMotorVolts(double volts) { topMotor.setVoltage(volts); }
+    public void setBottomMotorVolts(double volts) { bottomMotor.setVoltage(volts); }
 
     public double getTopMotorRPM() { return topMotor.getEncoder().getVelocity(); }
     public double getBottomMotorRPM() { return bottomMotor.getEncoder().getVelocity(); }

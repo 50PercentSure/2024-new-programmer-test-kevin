@@ -4,8 +4,6 @@
 
 package frc.robot;
 
-import com.pathplanner.lib.auto.AutoBuilder;
-import com.pathplanner.lib.auto.NamedCommands;
 import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj2.command.Command;
@@ -17,6 +15,7 @@ import edu.wpi.first.wpilibj2.command.InstantCommand;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 import edu.wpi.first.wpilibj2.command.button.POVButton;
 import frc.robot.constants.DrivetrainConstants;
+import frc.robot.constants.ShooterConstants;
 import frc.robot.subsystems.*;
 import frc.robot.commands.*;
 import frc.robot.utils.VisionUtils;
@@ -34,6 +33,7 @@ public class RobotContainer {
   public XboxController primaryController = new XboxController(0);
   public XboxController secondaryController = new XboxController(1);
   public SwerveSubsystem swerveSubsystem = new SwerveSubsystem();
+  public ShooterSubsystem shooterSubsystem = new ShooterSubsystem();
 
 
 
@@ -68,8 +68,13 @@ public class RobotContainer {
     ));
 
 
+
     new JoystickButton(primaryController, XboxController.Button.kY.value).whileTrue(
             new RunCommand(() -> swerveSubsystem.zeroGyro())
+    );
+
+    new JoystickButton(primaryController, XboxController.Button.kA.value).whileTrue(
+            new RunCommand(() -> new ShootCommand(shooterSubsystem))
     );
 
 //    new JoystickButton(primaryController, XboxController.Button.kA.value).whileTrue(
